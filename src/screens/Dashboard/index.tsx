@@ -8,7 +8,8 @@ import {
   GreetingsWrapper,
   UserGreeting,
   UserName,
-  Icon
+  Icon,
+  DashboardCardsList
 } from './styles'
 
 import { user } from '../../utils/user'
@@ -30,7 +31,26 @@ export const Dashboard = () => {
         </HeaderContentWrapper>
       </Header>
 
-      <DashboardCards />
+      <DashboardCardsList>
+        <DashboardCards
+          title='Entradas'
+          type='up'
+          amount='R$ 17.400,00'
+          lastTransaction='Última transação dia 13 de abril'
+        />
+        <DashboardCards
+          title='Saídas'
+          type='down'
+          amount='R$ 5.000,00'
+          lastTransaction='Última transação dia 13 de abril'
+        />
+        <DashboardCards
+          title='Total'
+          type='total'
+          amount='R$ 12.400,00'
+          lastTransaction='Última transação dia 13 de abril'
+        />
+      </DashboardCardsList>
     </Container>
   )
 }

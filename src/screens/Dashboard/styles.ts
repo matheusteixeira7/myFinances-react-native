@@ -2,6 +2,7 @@ import styled from 'styled-components/native'
 import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { Feather } from '@expo/vector-icons'
+import { Platform, ScrollView } from 'react-native'
 
 export const Container = styled.View`
   background-color: ${({ theme }) => theme.colors.background};
@@ -54,4 +55,16 @@ export const UserName = styled.Text`
 export const Icon = styled(Feather)`
   font-size: ${RFValue(24)}px;
   color: ${({ theme }) => theme.colors.secondary};
+`
+
+export const DashboardCardsList = styled(ScrollView).attrs({
+  horizontal: true,
+  showsHorizontalScrollIndicator: false,
+  contentContainerStyle: {
+    paddingHorizontal: 24
+  }
+})`
+  flex: 1;
+  position: absolute;
+  margin-top: ${Platform.OS === 'ios' ? RFValue(140) : RFValue(150)}px;
 `

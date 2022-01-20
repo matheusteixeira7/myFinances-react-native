@@ -9,17 +9,26 @@ import {
   LastTransaction
 } from './styles'
 
-export const DashboardCards = () => {
+interface IDashboardCardsProps {
+  title: string
+  type: 'up' | 'down' | 'total'
+  amount: string
+  lastTransaction: string
+}
+
+export const DashboardCards = ({ title, type, amount, lastTransaction }: IDashboardCardsProps) => {
+  const iconName = type === 'up' ? 'arrow-up-circle' : type === 'down' ? 'arrow-down-circle' : 'dollar-sign'
+
   return (
-    <Container>
+    <Container type={type}>
       <Header>
-        <Title>Entradas</Title>
-        <Icon name='arrow-up-circle' />
+        <Title type={type}>{title}</Title>
+        <Icon name={iconName} type={type} />
       </Header>
 
       <Body>
-        <Amount>R$ 17.400,00</Amount>
-        <LastTransaction>Última transação dia 13 de abril</LastTransaction>
+        <Amount type={type}>{amount}</Amount>
+        <LastTransaction type={type}>{lastTransaction}</LastTransaction>
       </Body>
     </Container>
   )
