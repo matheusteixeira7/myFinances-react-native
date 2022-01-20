@@ -4,19 +4,20 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { Feather } from '@expo/vector-icons'
 
 export const Container = styled.View`
-  width: 100%;
   background-color: ${({ theme }) => theme.colors.primary};
+
+  width: 100%;
   height: ${RFValue(278)}px;
   `
 
-export const Wrapper = styled.View`
+export const Header = styled.View`
   padding: 28px 24px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 `
 
-export const UserWrapper = styled.View`
+export const User = styled.View`
   margin-top: ${getStatusBarHeight() + RFValue(24)}px;
   flex-direction: row;
   align-items: center;
@@ -28,7 +29,7 @@ export const UserImage = styled.Image`
   border-radius: 10px;
 `
 
-export const User = styled.View`
+export const GreetingsWrapper = styled.View`
   margin-left: 16px;
 `
 

@@ -1,10 +1,10 @@
 import React from 'react'
 import {
   Container,
-  Wrapper,
-  UserWrapper,
-  UserImage,
+  Header,
   User,
+  UserImage,
+  GreetingsWrapper,
   UserGreeting,
   UserName,
   Icon
@@ -15,17 +15,17 @@ import { user } from '../../utils/user'
 export const Dashboard = () => {
   return (
     <Container>
-      <Wrapper>
-        <UserWrapper>
+      <Header>
+        <User>
             <UserImage source={{ uri: user.photo }} />
-            <User>
+            <GreetingsWrapper>
               <UserGreeting>Olá,</UserGreeting>
               <UserName>{user.name}</UserName>
-            </User>
-        </UserWrapper>
+            </GreetingsWrapper>
+        </User>
 
         <Icon name='power'/>
-      </Wrapper>
+      </Header>
     </Container>
   )
 }
