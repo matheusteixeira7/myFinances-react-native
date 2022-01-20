@@ -9,11 +9,16 @@ import {
   UserGreeting,
   UserName,
   Icon,
-  DashboardCardsList
+  DashboardCardsList,
+  TransactionsContainer,
+  TransactionsTitle,
+  TransactionsList
 } from './styles'
 
 import { user } from '../../utils/user'
 import { DashboardCards } from '../../components/DashboardCards'
+import { TransactionCard } from '../../components/TransactionsCard'
+import { data } from '../../utils/transactions'
 
 export const Dashboard = () => {
   return (
@@ -51,6 +56,18 @@ export const Dashboard = () => {
           lastTransaction='Última transação dia 13 de abril'
         />
       </DashboardCardsList>
+
+      <TransactionsContainer>
+        <TransactionsTitle>Listagem</TransactionsTitle>
+
+        <TransactionsList
+          data={data}
+          renderItem={({ item }) =>
+            <TransactionCard data={item}
+          />}
+          keyExtractor={item => item.id}
+        />
+      </TransactionsContainer>
     </Container>
   )
 }

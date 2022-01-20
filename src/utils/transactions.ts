@@ -6,7 +6,7 @@ export const data = [
     date: '2020-01-01',
     icon: 'coffee',
     title: 'Pizza',
-    type: 'outgoing'
+    type: 'outcome'
   },
   {
     id: '2',
@@ -15,7 +15,7 @@ export const data = [
     date: '2020-01-01',
     icon: 'dollar-sign',
     title: 'Desenvolvimento de app',
-    type: 'incoming'
+    type: 'income'
   },
   {
     id: '3',
@@ -24,6 +24,6 @@ export const data = [
     date: '2020-01-01',
     icon: 'dollar-sign',
     title: 'Almoço',
-    type: 'outgoing'
+    type: 'outcome'
   }
 ]

@@ -1,8 +1,13 @@
 import styled from 'styled-components/native'
-import { getStatusBarHeight } from 'react-native-iphone-x-helper'
+import { getBottomSpace, getStatusBarHeight } from 'react-native-iphone-x-helper'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { Feather } from '@expo/vector-icons'
-import { Platform, ScrollView } from 'react-native'
+import { FlatList, Platform, ScrollView } from 'react-native'
+
+interface IFlatListProps {
+  data?: any
+  id: string
+}
 
 export const Container = styled.View`
   background-color: ${({ theme }) => theme.colors.background};
@@ -68,3 +73,26 @@ export const DashboardCardsList = styled(ScrollView).attrs({
   position: absolute;
   margin-top: ${Platform.OS === 'ios' ? RFValue(140) : RFValue(150)}px;
 `
+
+export const TransactionsContainer = styled.View`
+  margin-top: 80px;
+  padding: 0 24px;
+  flex: 1;
+`
+
+export const TransactionsTitle = styled.Text`
+  margin-bottom: 16px;
+
+  font-size: ${RFValue(18)}px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  color: ${({ theme }) => theme.colors.text_dark};
+`
+
+export const TransactionsList = styled(
+  FlatList as new () => FlatList<IFlatListProps>
+).attrs({
+  showsVerticalScrollIndicator: false,
+  contentContainerStyle: {
+    marginBottom: getBottomSpace()
+  }
+})<any>``
