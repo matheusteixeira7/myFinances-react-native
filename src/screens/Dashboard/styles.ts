@@ -4,23 +4,29 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { Feather } from '@expo/vector-icons'
 
 export const Container = styled.View`
-  background-color: ${({ theme }) => theme.colors.primary};
-
-  width: 100%;
-  height: ${RFValue(278)}px;
-  `
+  background-color: ${({ theme }) => theme.colors.background};
+  flex: 1%;
+`
 
 export const Header = styled.View`
-  padding: 28px 24px;
+  background-color: ${({ theme }) => theme.colors.primary};
+
+  height: ${RFValue(278)}px;
+  padding: 0 24px;
+  padding-top: ${getStatusBarHeight() + RFValue(28)}px;
+`
+
+export const HeaderContentWrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  height: auto;
+  width: 100%;
 `
 
 export const User = styled.View`
-  margin-top: ${getStatusBarHeight() + RFValue(24)}px;
   flex-direction: row;
-  align-items: center;
 `
 
 export const UserImage = styled.Image`
@@ -48,5 +54,4 @@ export const UserName = styled.Text`
 export const Icon = styled(Feather)`
   font-size: ${RFValue(24)}px;
   color: ${({ theme }) => theme.colors.secondary};
-  margin-top: ${getStatusBarHeight() + RFValue(24)}px;
 `
