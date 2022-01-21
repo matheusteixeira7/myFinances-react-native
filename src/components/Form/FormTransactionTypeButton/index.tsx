@@ -8,7 +8,7 @@ interface ITransactionTypeProps extends TouchableOpacityProps {
   isActive: boolean
 }
 
-export const TransactionType = ({ title, type, isActive, ...rest }: ITransactionTypeProps) => {
+export const FormTransactionTypeButton = ({ title, type, isActive, ...rest }: ITransactionTypeProps) => {
   return (
     <Container type={type} isActive={isActive} {...rest}>
       <Icon

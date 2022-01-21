@@ -25,6 +25,7 @@ export const Container = styled.TouchableOpacity<IContainerProps>`
   align-items: center;
 
   padding: 16px;
+  margin: 8px 0 16px;
   width: 48%;
 
   border: 1.5px solid ${({ theme, isActive }) =>

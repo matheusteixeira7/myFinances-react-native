@@ -30,7 +30,9 @@ export const Form = styled.View`
   padding: 0 24px;
 `
 
-export const FormInput = styled.TextInput`
+export const FormInput = styled.TextInput.attrs((props) => ({
+  placeholderTextColor: props.theme.colors.text
+}))`
   background-color: ${({ theme }) => theme.colors.shape};
 
   width: 100%;
@@ -41,6 +43,9 @@ export const FormInput = styled.TextInput`
   border-radius: 5px;
 
   color: ${({ theme }) => theme.colors.text_dark};
+  
+  font-family: ${({ theme }) => theme.fonts.regular};
+  font-size: ${RFValue(14)}px;
 `
 
 export const TransactionTypeWrapper = styled.View`
