@@ -18,6 +18,10 @@ export const Register = () => {
   const [number, onChangeNumber] = useState(null)
   const [type, setType] = useState('')
   const [modalVisible, setModalVisible] = useState(false)
+  const [category, setCategory] = useState({
+    key: 'category',
+    name: 'Categoria'
+  })
 
   const handleIncomeTransactionType = () => {
     setType('income')
@@ -82,7 +86,7 @@ export const Register = () => {
             </TransactionTypeWrapper>
 
             <FormCategorySelectButton
-              title='Categoria'
+              title={category.name}
               onPress={handleOpenModal}
             />
           </View>
@@ -99,6 +103,8 @@ export const Register = () => {
           visible={modalVisible}
         >
           <CategorySelect
+            category={category}
+            setCategory={setCategory}
             closeModal={handleCloseModal}
           />
         </Modal>

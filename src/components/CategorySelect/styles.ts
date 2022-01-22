@@ -1,6 +1,8 @@
-import { Feather } from '@expo/vector-icons'
 import styled from 'styled-components/native'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { FlatList, FlatListProps } from 'react-native'
+
+interface IFlatListProps extends FlatListProps<any> {}
 
 export const Container = styled.View`
   flex: 1;
@@ -22,25 +24,7 @@ export const HeaderTitle = styled.Text`
   color: ${({ theme }) => theme.colors.shape};
 `
 
-export const CategoryItem = styled.View`
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 24px;
-`
-
-export const Icon = styled(Feather)`
-  font-size: ${RFValue(20)}px;
-  color: ${({ theme }) => theme.colors.text_dark};
-`
-
-export const Title = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(16)}px;
-  color: ${({ theme }) => theme.colors.text_dark};
-
-  margin-left: 16px;
-`
+export const List = styled(FlatList)<IFlatListProps>``
 
 export const Separator = styled.View`
   height: 1px;
