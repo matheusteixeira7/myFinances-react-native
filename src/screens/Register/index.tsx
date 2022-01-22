@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { Keyboard, TouchableWithoutFeedback } from 'react-native'
+import { Keyboard, Modal, TouchableWithoutFeedback, View } from 'react-native'
+import { Button } from '../../components/Button'
+import { CategorySelect } from '../../components/CategorySelect'
 import { FormCategorySelectButton } from '../../components/Form/FormCategorySelectButton'
 import { FormTransactionTypeButton } from '../../components/Form/FormTransactionTypeButton'
 import {
@@ -15,6 +17,7 @@ export const Register = () => {
   const [text, onChangeText] = useState('')
   const [number, onChangeNumber] = useState(null)
   const [type, setType] = useState('')
+  const [modalVisible, setModalVisible] = useState(false)
 
   const handleIncomeTransactionType = () => {
     setType('income')
@@ -28,6 +31,20 @@ export const Register = () => {
     Keyboard.dismiss()
   }
 
+  const handleOpenModal = () => {
+    setModalVisible(true)
+  }
+
+  const handleCloseModal = () => {
+    setModalVisible(false)
+  }
+
+  const handleSubmit = () => {
+    console.log('text', text)
+    console.log('number', number)
+    console.log('type', type)
+  }
+
   return (
     <TouchableWithoutFeedback
       onPress={handleDismissKeyboard}
@@ -37,34 +54,54 @@ export const Register = () => {
           <HeaderTitle>Cadastro</HeaderTitle>
         </Header>
         <Form>
-          <FormInput
-            placeholder="Nome"
-            onChangeText={onChangeText}
-            value={text}
-          />
-          <FormInput
-            placeholder="Preço"
-            onChangeText={onChangeNumber}
-            value={number}
-            keyboardType='numeric'
-          />
-          <TransactionTypeWrapper>
-            <FormTransactionTypeButton
-              type='income'
-              title='Entrada'
-              onPress={handleIncomeTransactionType}
-              isActive={type === 'income'}
+          <View>
+            <FormInput
+              placeholder="Nome"
+              onChangeText={onChangeText}
+              value={text}
             />
-            <FormTransactionTypeButton
-              type='outcome'
-              title='Saída'
-              onPress={handleOutcomeTransactionType}
-              isActive={type === 'outcome'}
+            <FormInput
+              placeholder="Preço"
+              onChangeText={onChangeNumber}
+              value={number}
+              keyboardType='numeric'
             />
-          </TransactionTypeWrapper>
+            <TransactionTypeWrapper>
+              <FormTransactionTypeButton
+                type='income'
+                title='Entrada'
+                onPress={handleIncomeTransactionType}
+                isActive={type === 'income'}
+              />
+              <FormTransactionTypeButton
+                type='outcome'
+                title='Saída'
+                onPress={handleOutcomeTransactionType}
+                isActive={type === 'outcome'}
+              />
+            </TransactionTypeWrapper>
 
-          <FormCategorySelectButton />
+            <FormCategorySelectButton
+              title='Categoria'
+              onPress={handleOpenModal}
+            />
+          </View>
+
+          <Button
+            title='Enviar'
+            onPress={handleSubmit}
+          />
         </Form>
+
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={modalVisible}
+        >
+          <CategorySelect
+            closeModal={handleCloseModal}
+          />
+        </Modal>
       </Container>
     </TouchableWithoutFeedback>
   )

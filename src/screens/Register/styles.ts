@@ -28,6 +28,9 @@ export const FormWrapper = styled.View`
 
 export const Form = styled.View`
   padding: 0 24px;
+  flex: 1;
+
+  justify-content: space-between;
 `
 
 export const FormInput = styled.TextInput.attrs((props) => ({
