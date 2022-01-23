@@ -41,7 +41,7 @@ export const FormInput = styled.TextInput.attrs((props) => ({
   width: 100%;
   height: ${RFValue(55)}px;
 
-  padding: 18px;
+  padding: 0 18px;
   margin-bottom: 8px;
   border-radius: 5px;
 
