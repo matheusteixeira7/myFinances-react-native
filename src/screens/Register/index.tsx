@@ -1,27 +1,36 @@
 import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { Keyboard, Modal, TouchableWithoutFeedback, View } from 'react-native'
 import { Button } from '../../components/Button'
 import { CategorySelect } from '../../components/CategorySelect'
 import { FormCategorySelectButton } from '../../components/Form/FormCategorySelectButton'
 import { FormTransactionTypeButton } from '../../components/Form/FormTransactionTypeButton'
+import { HookInput } from '../../components/HookInput'
 import {
   Container,
   Form,
-  FormInput,
   Header,
   HeaderTitle,
   TransactionTypeWrapper
 } from './styles'
 
+interface IFormData {
+  name: string
+  amount: number
+}
+
 export const Register = () => {
-  const [text, onChangeText] = useState('')
-  const [number, onChangeNumber] = useState(null)
   const [type, setType] = useState('')
   const [modalVisible, setModalVisible] = useState(false)
   const [category, setCategory] = useState({
     key: 'category',
     name: 'Categoria'
   })
+
+  const {
+    control,
+    handleSubmit
+  } = useForm()
 
   const handleIncomeTransactionType = () => {
     setType('income')
@@ -43,10 +52,15 @@ export const Register = () => {
     setModalVisible(false)
   }
 
-  const handleSubmit = () => {
-    console.log('text', text)
-    console.log('number', number)
-    console.log('type', type)
+  const handleRegister = (form: IFormData) => {
+    const data = {
+      name: form.name,
+      amount: form.amount,
+      type,
+      category: category.key
+    }
+
+    console.log(data)
   }
 
   return (
@@ -59,16 +73,15 @@ export const Register = () => {
         </Header>
         <Form>
           <View>
-            <FormInput
+            <HookInput
+              name="name"
               placeholder="Nome"
-              onChangeText={onChangeText}
-              value={text}
+              control={control}
             />
-            <FormInput
-              placeholder="Preço"
-              onChangeText={onChangeNumber}
-              value={number}
-              keyboardType='numeric'
+            <HookInput
+              name='amount'
+              placeholder='Valor'
+              control={control}
             />
             <TransactionTypeWrapper>
               <FormTransactionTypeButton
@@ -93,7 +106,7 @@ export const Register = () => {
 
           <Button
             title='Enviar'
-            onPress={handleSubmit}
+            onPress={handleSubmit(handleRegister)}
           />
         </Form>
 

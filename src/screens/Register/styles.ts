@@ -1,5 +1,8 @@
+import { TextInputProps } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
+
+type IProps = TextInputProps
 
 export const Container = styled.View`
   flex: 1;
@@ -33,7 +36,7 @@ export const Form = styled.View`
   justify-content: space-between;
 `
 
-export const FormInput = styled.TextInput.attrs((props) => ({
+export const FormInput = styled.TextInput.attrs<IProps>((props) => ({
   placeholderTextColor: props.theme.colors.text
 }))`
   background-color: ${({ theme }) => theme.colors.shape};
