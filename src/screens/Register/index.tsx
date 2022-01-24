@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Keyboard, Modal, TouchableWithoutFeedback, View } from 'react-native'
+import { Alert, Keyboard, Modal, TouchableWithoutFeedback, View } from 'react-native'
+import * as Yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+
 import { Button } from '../../components/Button'
 import { CategorySelect } from '../../components/CategorySelect'
 import { FormCategorySelectButton } from '../../components/Form/FormCategorySelectButton'
@@ -19,6 +22,15 @@ interface IFormData {
   amount: number
 }
 
+const schema = Yup.object().shape({
+  name: Yup.string().required('Campo obrigatório'),
+  amount:
+  Yup.number()
+    .typeError('Valor inválido')
+    .positive('Valor deve ser positivo')
+    .required('Campo obrigatório')
+})
+
 export const Register = () => {
   const [type, setType] = useState('')
   const [modalVisible, setModalVisible] = useState(false)
@@ -29,8 +41,13 @@ export const Register = () => {
 
   const {
     control,
-    handleSubmit
-  } = useForm()
+    handleSubmit,
+    formState: {
+      errors
+    }
+  } = useForm({
+    resolver: yupResolver(schema)
+  })
 
   const handleIncomeTransactionType = () => {
     setType('income')
@@ -53,6 +70,14 @@ export const Register = () => {
   }
 
   const handleRegister = (form: IFormData) => {
+    if (type === '') {
+      return Alert.alert('Erro', 'Selecione o tipo da transação')
+    }
+
+    if (category.key === 'category') {
+      return Alert.alert('Erro', 'Selecione uma categoria')
+    }
+
     const data = {
       name: form.name,
       amount: form.amount,
@@ -77,11 +102,14 @@ export const Register = () => {
               name="name"
               placeholder="Nome"
               control={control}
+              autoCorrect={false}
+              error={errors.name && errors.name.message}
             />
             <HookInput
               name='amount'
               placeholder='Valor'
               control={control}
+              error={errors.amount && errors.amount.message}
             />
             <TransactionTypeWrapper>
               <FormTransactionTypeButton
